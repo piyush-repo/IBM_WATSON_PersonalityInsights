@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IBM WATSON PERSONALITY INSIGHTS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        #text-area {
+            padding-top: 100px;
+        }
+    </style>
+    <script>
+        function submit() {
+            const textArea = document.getElementById("text-content");
+            const baseUrl = "http://localhost:8080/";
+            const url = `${baseUrl}personalityAnalysis/`;
+            console.log("text: area : ",textArea.value);
+            fetch(url, {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                method: 'POST',
+                body: JSON.stringify({
+                    content: textArea.value
+                })
+            }).then(response => response.json())
+                .then((data) => {
+                    const detailParagraph = document.getElementById('detail');
+                    detailParagraph.innerHTML = JSON.stringify(data);
+                });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>IBM WATSON PERSONALITY INSIGHTS ANALYSIS</h1>
+        </div>
+        <div>
+            <h2>Enter Content</h2>
+            <span id="text-area">
+                <textarea id="text-content" rows="4" cols="50">
+                        </textarea>
+            </span>
+
+            <div>
+                <button id="btn-submit" type="button" class="btn btn-success" onclick="submit()">Submit</button>
+            </div>
+            <div id="result">
+                <h3>Response : </h3>
+                <p id="detail">
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
