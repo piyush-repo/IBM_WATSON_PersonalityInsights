@@ -3,9 +3,9 @@
 const personalityInsightV3 = require('ibm-watson/personality-insights/v3');
 
 const personalityInsights = new personalityInsightV3({
-    iam_apikey: 'T1J5gZbTtmraXg4ouUDOQEzQLB5gErrNdJA87Wd5Gxq6',
-    version: '2017-10-13',
-    url: 'https://gateway-lon.watsonplatform.net/personality-insights/api/'
+    iam_apikey: "<api_Key>",
+    version: '<version>',
+    url: '<url>'
 })
 
 class Personality {
